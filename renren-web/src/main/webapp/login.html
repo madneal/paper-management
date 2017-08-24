@@ -78,10 +78,10 @@ var vm = new Vue({
 	data:{
 		username: '',
 		password: '',
-		captcha: '',
+//		captcha: '',
 		error: false,
 		errorMsg: '',
-		src: 'captcha.jpg'
+//		src: 'captcha.jpg'
 	},
 	beforeCreate: function(){
 		if(self != top){
@@ -89,9 +89,9 @@ var vm = new Vue({
 		}
 	},
 	methods: {
-		refreshCode: function(){
-			this.src = "captcha.jpg?t=" + $.now();
-		},
+//		refreshCode: function(){
+//			this.src = "captcha.jpg?t=" + $.now();
+//		},
 		login: function (event) {
 			var data = "username="+vm.username+"&password="+vm.password+"&captcha="+vm.captcha;
 			$.ajax({
@@ -106,7 +106,7 @@ var vm = new Vue({
 						vm.error = true;
 						vm.errorMsg = result.msg;
 						
-						vm.refreshCode();
+//						vm.refreshCode();
 					}
 				}
 			});
