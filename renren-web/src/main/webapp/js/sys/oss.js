@@ -76,7 +76,7 @@ var vm = new Vue({
 		},
 		getConfig: function () {
             $.getJSON("../sys/oss/config", function(r){
-				vm.config = r.config;
+                vm.config = r.config;
             });
         },
 		addConfig: function(){
