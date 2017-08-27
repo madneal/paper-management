@@ -4,6 +4,9 @@ $(function () {
         datatype: "json",
         colModel: [			
 			{ label: 'id', name: 'id', width: 20, key: true },
+            { label: '学号', name: 'stuNo', width: 100},
+            { label: '姓名', name: 'name', width: 30},
+            { label: '专业', name: 'major', wdith: 50},
             { label: 'URL地址', name: 'url', width: 160 },
 			{ label: '创建时间', name: 'createDate', width: 40 }
         ],
@@ -63,9 +66,13 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		showList: true,
+	    // 1展示列表，2展示上传配置，3展示上传信息面板
+		showType: 1,
+        isShowUploadPanel: false,
+        uploadTitle: null,
 		title: null,
-        config: {}
+        config: {},
+        uploadInfo: {}
 	},
     created: function(){
         this.getConfig();
@@ -79,8 +86,17 @@ var vm = new Vue({
                 vm.config = r.config;
             });
         },
+        getUploadInfo: function () {
+            $.getJSON("../sys/oss/uploadInfo", function (r) {
+                vm.uploadInfo = r.uploadInfo;
+            })
+        },
+        openUploadPanel: function () {
+            vm.showType = 3;
+            vm.uploadTitle = "上传信息";
+        },
 		addConfig: function(){
-			vm.showList = false;
+			vm.showType = 2;
 			vm.title = "云存储配置";
 		},
 		saveOrUpdate: function () {
