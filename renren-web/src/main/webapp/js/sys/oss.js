@@ -86,10 +86,19 @@ var vm = new Vue({
                 vm.config = r.config;
             });
         },
+        cancel: function () {
+            reload();
+        },
         getUploadInfo: function () {
             $.getJSON("../sys/oss/uploadInfo", function (r) {
                 vm.uploadInfo = r.uploadInfo;
             })
+        },
+        uploadFile: function () {
+
+        },
+        addNewRecord: function () {
+
         },
         openUploadPanel: function () {
             vm.showType = 3;
