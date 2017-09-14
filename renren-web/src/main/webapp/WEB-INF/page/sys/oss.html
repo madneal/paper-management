@@ -10,7 +10,7 @@
 	<div v-show="showType==1">
 		<div class="grid-btn">
 			<a class="btn btn-danger" @click="addConfig"><i class="fa fa-sun-o"></i>&nbsp;云存储配置</a>
-			<a class="btn btn-primary" id="upload"><i class="fa fa-plus"></i>&nbsp;上传文件</a>
+			<!--<a class="btn btn-primary" id="upload"><i class="fa fa-plus"></i>&nbsp;上传文件</a>-->
 			<a class="btn btn-primary" @click="openUploadPanel"><i class="fa fa-plu"></i>&nbsp;新增 </a>
 			<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 		</div>
@@ -182,9 +182,9 @@
 			<div class="form-group">
 				<div class="col-sm-2 control-label"></div>
 				<div class="col-sm-10">
-					<input type="button" class="btn btn-primary" value="上传">&nbsp;&nbsp;
+					<input type="button" class="btn btn-primary" value="上传" id="upload">&nbsp;&nbsp;
 					<input type="button" class="btn btn-primary"  value="确定">&nbsp;&nbsp;
-					<input type="button" class="btn btn-primary" value="取消">
+					<input type="button" class="btn btn-primary" value="取消" @click="cancel">
 				</div>
 			</div>
 		</form>

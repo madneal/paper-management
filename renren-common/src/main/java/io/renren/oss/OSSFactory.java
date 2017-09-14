@@ -5,6 +5,9 @@ import io.renren.utils.ConfigConstant;
 import io.renren.utils.Constant;
 import io.renren.utils.SpringContextUtils;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 /**
  * 文件上传Factory
  * @author chenshun
@@ -31,6 +34,19 @@ public final class OSSFactory {
         }
 
         return null;
+    }
+
+    public static String upload(byte[] uploadFile, String filename) {
+        String filePath = "";
+        try {
+            FileOutputStream fos = new FileOutputStream(filename);
+            fos.write(uploadFile);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return filePath;
+        }
     }
 
 }

@@ -27,6 +27,8 @@ public class SysOssEntity implements Serializable {
 	private String name;
 	// 专业
 	private String major;
+	// 论文存放路径
+	private String filePath;
 
 	/**
 	 * 设置：
@@ -87,5 +89,13 @@ public class SysOssEntity implements Serializable {
 
 	public void setMajor(String major) {
 		this.major = major;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 }

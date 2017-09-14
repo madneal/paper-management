@@ -1,25 +1,16 @@
 package io.renren.controller;
 
+import com.alibaba.fastjson.JSON;
 import io.renren.entity.SysOssEntity;
 import io.renren.oss.CloudStorageConfig;
 import io.renren.oss.OSSFactory;
 import io.renren.service.SysConfigService;
 import io.renren.service.SysOssService;
-import io.renren.utils.ConfigConstant;
-import io.renren.utils.Constant;
-import io.renren.utils.PageUtils;
-import io.renren.utils.Query;
-import io.renren.utils.R;
-import io.renren.utils.RRException;
+import io.renren.utils.*;
 import io.renren.validator.ValidatorUtils;
 import io.renren.validator.group.AliyunGroup;
 import io.renren.validator.group.QcloudGroup;
 import io.renren.validator.group.QiniuGroup;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.fastjson.JSON;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -115,16 +107,25 @@ public class SysOssController {
 		}
 
 		//上传文件
-		String url = OSSFactory.build().upload(file.getBytes());
+//		String url = OSSFactory.build().upload(file.getBytes());
+		String filename = file.getOriginalFilename();
+		String saveFilepath = OSSFactory.upload(file.getBytes(), filename);
 
 		//保存文件信息
-		SysOssEntity ossEntity = new SysOssEntity();
-		ossEntity.setUrl(url);
-		ossEntity.setCreateDate(new Date());
-		sysOssService.save(ossEntity);
+//		SysOssEntity ossEntity = new SysOssEntity();
+//		ossEntity.setUrl(url);
+//		ossEntity.setCreateDate(new Date());
+//		sysOssService.save(ossEntity);
 
-		return R.ok().put("url", url);
+		return R.ok().put("filePath", saveFilepath);
 	}
+
+	/**
+	 * 增加信息记录
+	 */
+//	public R add(@RequestBody SysOssEntity entity) {
+//		if()
+//	}
 
 
 	/**

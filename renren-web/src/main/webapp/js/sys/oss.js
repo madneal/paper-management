@@ -87,7 +87,7 @@ var vm = new Vue({
             });
         },
         cancel: function () {
-            reload();
+            vm.showType = 1;
         },
         getUploadInfo: function () {
             $.getJSON("../sys/oss/uploadInfo", function (r) {
