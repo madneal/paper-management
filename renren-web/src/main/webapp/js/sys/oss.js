@@ -5,7 +5,7 @@ $(function () {
         colModel: [			
 			{ label: 'id', name: 'id', width: 20, key: true },
             { label: '学号', name: 'stuNo', width: 100},
-            { label: '姓名', name: 'name', width: 30},
+            { label: '姓名', name: 'stuName', width: 30},
             { label: '专业', name: 'major', wdith: 50}
         ],
 		viewrecords: true,
@@ -92,9 +92,6 @@ var vm = new Vue({
                 vm.uploadInfo = r.uploadInfo;
             })
         },
-        uploadFile: function () {
-
-        },
         addNewRecord: function () {
             var record = this._data.uploadInfo;
             var url = '../sys/oss/add';
@@ -107,11 +104,13 @@ var vm = new Vue({
                 type: "POST",
                 url: url,
                 contentType: "application/json",
-                data: JSON.stringify(vm._data.uploadInfo),
+                data: JSON.stringify(record),
                 success: function (r) {
                     if (r.code === 0) {
                         alert('保存数据成功', function () {
-                            vm.record();
+                            vm.uploadInfo = {};
+                            vm.showType = 1;
+                            vm.reload();
                         })
                     } else {
                         alert(r.message);

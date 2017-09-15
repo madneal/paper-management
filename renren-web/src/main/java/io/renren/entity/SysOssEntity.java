@@ -13,14 +13,24 @@ import java.io.Serializable;
  */
 public class SysOssEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	private Long id;
 	// 学号
 	private String stuNo;
 	// 姓名
-	private String name;
+	private String stuName;
 	// 专业
 	private String major;
 	// 论文存放路径
 	private String filePath;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getStuNo() {
 		return stuNo;
@@ -30,12 +40,12 @@ public class SysOssEntity implements Serializable {
 		this.stuNo = stuNo;
 	}
 
-	public String getName() {
-		return name;
+	public String getStuName() {
+		return stuName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
 	}
 
 	public String getMajor() {

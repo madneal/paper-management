@@ -30,7 +30,7 @@
 		(
 			#{filePath},
 			#{stuNo},
-			#{name},
+			#{stuName},
 			#{major}
 		)
 	</insert>

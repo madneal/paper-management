@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -136,7 +138,18 @@ public class SysOssController {
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:oss:all")
 	public R delete(@RequestBody Long[] ids){
+		List<SysOssEntity> sysOssEntities = new ArrayList<>();
+		for (Long id : ids) {
+			sysOssEntities.add(sysOssService.queryObject(id));
+		}
 		sysOssService.deleteBatch(ids);
+		for (SysOssEntity entity : sysOssEntities) {
+			String filePath = entity.getFilePath();
+			File file = new File(filePath);
+			if (file.isFile() && file.exists()) {
+				file.delete();
+			}
+		}
 
 		return R.ok();
 	}

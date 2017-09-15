@@ -37,7 +37,6 @@ public final class OSSFactory {
     }
 
     public static String upload(byte[] uploadFile, String filename) {
-        String filePath = "";
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             fos.write(uploadFile);
@@ -45,7 +44,7 @@ public final class OSSFactory {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
-            return filePath;
+            return filename;
         }
     }
 
