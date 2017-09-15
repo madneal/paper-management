@@ -43,19 +43,17 @@ var vm = new Vue({
 		password:'',
 		newPassword:'',
         navTitle:"控制台",
-		item: [{
-			name: '123123'
-		}]
+		item: []
 	},
 	methods: {
 		getMenuList: function (event) {
-			$.getJSON("sys/menu/user?_"+$.now(), function(r){
+			$.getJSON("sys/menu/user?_" + $.now(), function(r){
 				vm.menuList = r.menuList;
 				window.permissions = r.permissions;
 			});
 		},
 		getUser: function(){
-			$.getJSON("sys/user/info?_"+$.now(), function(r){
+			$.getJSON("sys/user/info?_" + $.now(), function(r){
 				vm.user = r.user;
 			});
 		},
@@ -81,24 +79,14 @@ var vm = new Vue({
 								layer.alert('修改成功', function(index){
 									location.reload();
 								});
-							}else{
+							} else {
 								layer.alert(result.msg);
 							}
 						}
 					});
 	            }
 			});
-		},
-        donate: function () {
-            layer.open({
-                type: 2,
-                title: false,
-                area: ['806px', '467px'],
-                closeBtn: 1,
-                shadeClose: false,
-                content: ['http://cdn.renren.io/donate.jpg', 'no']
-            });
-        }
+		}
 	},
 	created: function(){
 		this.getMenuList();
@@ -120,7 +108,7 @@ function routerList(router, menuList){
 		if(menu.type == 0){
 			routerList(router, menu.list);
 		}else if(menu.type == 1){
-			router.add('#'+menu.url, function() {
+			router.add('#' + menu.url, function() {
 				var url = window.location.hash;
 				
 				//替换iframe的url
