@@ -6,9 +6,7 @@ $(function () {
 			{ label: 'id', name: 'id', width: 20, key: true },
             { label: '学号', name: 'stuNo', width: 100},
             { label: '姓名', name: 'name', width: 30},
-            { label: '专业', name: 'major', wdith: 50},
-            { label: 'URL地址', name: 'url', width: 160 },
-			{ label: '创建时间', name: 'createDate', width: 40 }
+            { label: '专业', name: 'major', wdith: 50}
         ],
 		viewrecords: true,
         height: 385,
@@ -53,9 +51,9 @@ $(function () {
         },
         onComplete : function(file, r){
             if(r.code == 0){
-                alert(r.url);
-                vm.reload();
-            }else{
+                vm.uploadInfo.filePath = r.filePath;
+                alert("文件上传成功");
+            } else {
                 alert(r.msg);
             }
         }
@@ -98,7 +96,28 @@ var vm = new Vue({
 
         },
         addNewRecord: function () {
-
+            var record = this._data.uploadInfo;
+            var url = '../sys/oss/add';
+            for (var key in record) {
+                if (!record[key]) {
+                    alert(key + '不应该为空');
+                }
+            }
+            $.ajax({
+                type: "POST",
+                url: url,
+                contentType: "application/json",
+                data: JSON.stringify(vm._data.uploadInfo),
+                success: function (r) {
+                    if (r.code === 0) {
+                        alert('保存数据成功', function () {
+                            vm.record();
+                        })
+                    } else {
+                        alert(r.message);
+                    }
+                }
+            })
         },
         openUploadPanel: function () {
             vm.showType = 3;

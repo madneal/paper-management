@@ -123,9 +123,11 @@ public class SysOssController {
 	/**
 	 * 增加信息记录
 	 */
-//	public R add(@RequestBody SysOssEntity entity) {
-//		if()
-//	}
+	@RequestMapping("/add")
+	public R add(@RequestBody SysOssEntity entity) {
+		sysOssService.save(entity);
+		return R.ok();
+	}
 
 
 	/**
