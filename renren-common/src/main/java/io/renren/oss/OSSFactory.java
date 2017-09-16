@@ -15,7 +15,7 @@ public final class OSSFactory {
     public static String upload(byte[] uploadFile, String filename) {
         String filePath = "";
         try {
-            FileOutputStream fos = new FileOutputStream(filename);
+            FileOutputStream fos = new FileOutputStream("files//" + filename);
             fos.write(uploadFile);
             fos.close();
             filePath = new File(filename).getAbsolutePath();
