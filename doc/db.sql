@@ -78,11 +78,13 @@ CREATE TABLE `sys_log` (
 
 -- 文件上传
 CREATE TABLE `sys_oss` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `url` varchar(200) COMMENT 'URL地址',
-  `create_date` datetime COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COMMENT='文件上传';
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `filepath` varchar(200) NOT NULL,
+   `stu_no` varchar(50) DEFAULT NULL,
+   `stu_name` varchar(20) DEFAULT NULL,
+   `major` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='文件上传';
 
 
 -- 初始数据
